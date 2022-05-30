@@ -49,7 +49,7 @@ function Delete(props) {
                 visible={visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
-                okText="Thêm"
+                okText="Xóa"
                 cancelText="Hủy bỏ"
             >
                 <p>Bạn có muốn xóa {data.length} phần tử này không</p>
