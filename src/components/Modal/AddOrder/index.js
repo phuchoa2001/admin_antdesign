@@ -15,6 +15,7 @@ function AddOrder(props) {
     const StateModal = useSelector(state => state.Modal)
     const visible = StateModal.Modal
     const { type } = StateModal;
+    const isBool = type !== "Add order";
     const dispatch = useDispatch();
     const name = useRef();
     const formElemt = useRef();
@@ -24,7 +25,7 @@ function AddOrder(props) {
         dispatch(resetOrder());
     };
     const handleOk = () => {
-        handleSubmit();
+        formElemt.current.submit();
     };
     const [form] = Form.useForm();
     const objectForm = {
@@ -35,23 +36,13 @@ function AddOrder(props) {
     }
     const handleSubmit = () => {
         //  bắt có lỗi không nếu không chúng ta thêm 
-        const ListError = formElemt.current.getFieldsError();
-        const LengthError = ListError.filter((error) => error.errors.length > 0);
-        if (!LengthError.length &&
-            objectForm.name !== "" &&
-            objectForm.price !== "" &&
-            objectForm.address !== ""
-        ) {
-            const Notification =
-                `${objectForm.name} đã ${type === "Add order" ? "thêm" : "sửa"} vào phần order`;
-            dispatch(addOrder(objectForm));
-            dispatch(resetOrder());
-            dispatch(close());
-            dispatch(addNotification(Notification))
-            openNotification(Notification);
-        } else {
-            openNotification("Form có lỗi !");
-        }
+        const Notification =
+            `${objectForm.name} đã ${!isBool ? "thêm" : "sửa"} vào phần order`;
+        dispatch(addOrder(objectForm));
+        dispatch(resetOrder());
+        dispatch(close());
+        dispatch(addNotification(Notification))
+        openNotification(Notification);
     }
     useEffect(() => {
         name.current.focus();
@@ -65,11 +56,11 @@ function AddOrder(props) {
                 visible={visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
-                okText="Thêm"
+                okText= {!isBool ?"Thêm" : "Sửa"}
                 cancelText="Hủy bỏ"
             >
                 <h3 className={Styles.title}>
-                    {type === "Add order" ? "Thêm sản phẩm" : "Sửa sản phẩm"}
+                    {!isBool ? "Thêm sản phẩm" : "Sửa sản phẩm"}
                 </h3>
                 <Form
                     className={Styles.form}
@@ -88,6 +79,7 @@ function AddOrder(props) {
                                 required: true,
                                 message: 'Không thể bỏ trống trường này !',
                                 whitespace: true,
+                                warningOnly:isBool
                             },
                         ]}
                     >
@@ -102,6 +94,7 @@ function AddOrder(props) {
                                 required: true,
                                 message: 'Không thể bỏ trống trường này !',
                                 whitespace: true,
+                                warningOnly:isBool
                             },
                         ]}
                     >
@@ -116,6 +109,7 @@ function AddOrder(props) {
                                 required: true,
                                 message: 'Không thể bỏ trống trường này !',
                                 whitespace: true,
+                                warningOnly:isBool
                             },
                         ]}
                     >

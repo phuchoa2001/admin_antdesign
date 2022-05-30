@@ -5,7 +5,7 @@ import { Form, Input, Modal } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { close } from '../../../redux/useModal';
-import { addUser  , resetUser} from '../../../redux/useUsers';
+import { addUser, resetUser } from '../../../redux/useUsers';
 import { addNotification } from '../../../redux/useNotification';
 
 import Styles from './index.module.css';
@@ -16,6 +16,7 @@ function AddOrder(props) {
     const StateModal = useSelector(state => state.Modal)
     const visible = StateModal.Modal
     const { type } = StateModal;
+    const isBool = type !== "Add users";
     const dispatch = useDispatch();
     const name = useRef();
     const formElemt = useRef();
@@ -25,7 +26,7 @@ function AddOrder(props) {
         dispatch(resetUser());
     };
     const handleOk = () => {
-        handleSubmit();
+        formElemt.current.submit();
     };
     const [form] = Form.useForm();
     const objectForm = {
@@ -34,24 +35,14 @@ function AddOrder(props) {
         username: Form.useWatch('username', form) || "",
         password: Form.useWatch('password', form) || ""
     }
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         //  bắt có lỗi không nếu không chúng ta thêm 
-        const ListError = formElemt.current.getFieldsError();
-        const LengthError = ListError.filter((error) => error.errors.length > 0);
-        if (!LengthError.length &&
-            objectForm.email !== "" &&
-            objectForm.username !== "" &&
-            objectForm.password !== ""
-        ) {
-            const Notification = `${objectForm.username} đã ${type === "Add users" ? "thêm" : "sửa"} vào phần Users`;
-            dispatch(addUser(objectForm));
-            dispatch(resetUser());
-            dispatch(close());
-            dispatch(addNotification(Notification))
-            openNotification(Notification);
-        } else {
-            openNotification("Form có lỗi !");
-        }
+        const Notification = `${objectForm.username} đã ${!isBool ? "thêm" : "sửa"} vào phần Users`;
+        dispatch(addUser(objectForm));
+        dispatch(resetUser());
+        dispatch(close());
+        dispatch(addNotification(Notification))
+        openNotification(Notification);
     }
     useEffect(() => {
         name.current.focus();
@@ -65,11 +56,11 @@ function AddOrder(props) {
                 visible={visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
-                okText="Thêm"
+                okText={!isBool ? "Thêm" : "Sửa"}
                 cancelText="Hủy bỏ"
             >
                 <h3 className={Styles.title}>
-                    {type === "Add users" ? "Thêm tài khoản" : "Sửa tài khoản"}
+                    {!isBool ? "Thêm tài khoản" : "Sửa tài khoản"}
                 </h3>
                 <Form
                     className={Styles.form}
@@ -92,11 +83,7 @@ function AddOrder(props) {
                             },
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
-                                    if (type === "Add users") {
-                                        return CheckAccount(value, "email", list)
-                                    } else {
-                                        return Promise.resolve();
-                                    }
+                                    return CheckAccount(objectForm.key, value, "email", list)
                                 }
                             })
                         ]}
@@ -115,11 +102,7 @@ function AddOrder(props) {
                             },
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
-                                    if (type === "Add users") {
-                                        return CheckAccount(value, "username", list)
-                                    } else {
-                                        return Promise.resolve();
-                                    }
+                                    return CheckAccount(objectForm.key, value, "username", list)
                                 }
                             })
                         ]}
@@ -135,6 +118,7 @@ function AddOrder(props) {
                                 required: true,
                                 message: 'Không thể bỏ trống trường này',
                                 whitespace: true,
+                                warningOnly: isBool
                             },
                         ]}
                     >
