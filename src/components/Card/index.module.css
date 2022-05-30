@@ -1,0 +1,24 @@
+.wrapper {
+    width: calc(100% - 8px);
+    border-radius: 0.7rem;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px ;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0px;
+}
+.icon {
+    font-size: 25px;
+    margin-right: 10px;
+}
+.number {
+    font-size: 25px;
+}
+@media only screen and (min-width: 1320px) {
+    .wrapper {
+        margin: 0px;
+    }
+}

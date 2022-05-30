@@ -1,27 +1,35 @@
 import Home from '../page/Home';
-import ListUser from '../page/ListUser';
+import Users from '../page/Users';
 import Order from '../page/Order';
-import Product from '../page/Product';
-const router = [
+import Products from '../page/Products';
+import Link404 from '../page/Link404';
+const routes = [
     {
         path: "/",
         exact: true,
         mani: () => <Home />,
     },
     {
-        path: "/listuser",
-        exact: true,
-        mani: () => <ListUser />,
+        path: "/users",
+        exact: false,
+        mani: () => <Users />,
     },
     {
         path: "/order",
-        exact: true,
+        exact: false,
         mani: () => <Order />,
     },
     {
-        path: "/product",
+        path: "/products",
+        exact: false,
+        mani: () => <Products />
+        ,
+    },
+    {
+        path: "",
         exact: true,
-        mani: () => <Product />,
+        mani: () => <Link404 />
+        ,
     },
 ]
-export default router;
+export default routes;

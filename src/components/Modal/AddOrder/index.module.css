@@ -1,0 +1,10 @@
+.title {
+    width: 100%;
+    text-align: center;
+}
+.btnSubmit {
+    display: none;
+}
+.form {
+    padding: 30px 0px;
+}

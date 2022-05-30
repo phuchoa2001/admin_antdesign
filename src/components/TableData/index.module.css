@@ -1,0 +1,14 @@
+.Order {
+    margin-top: 10px;
+}
+.btnOrder {
+    margin: 0px 5px;
+}
+@media only screen and (max-width: 539px) {
+    /* PC Điện thoại nhỏ hơn 539px */
+    .table {
+        overflow: scroll;
+        max-width: unset;
+        background: #fff;
+    }
+}

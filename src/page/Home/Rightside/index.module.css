@@ -1,0 +1,13 @@
+.RightSide {
+    width: 98%;
+    height: 100%;
+    margin-left: 2%;
+}
+.listUpload {
+    background: white;
+    border-radius: 0.7rem;
+    width: 100%;
+    padding: 16px 0px;
+    overflow: scroll;
+    height: 550px;
+}

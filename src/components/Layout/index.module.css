@@ -1,0 +1,95 @@
+.BtnMenumobile {
+    display: none;
+}
+.icon {
+    font-size: 24px;
+    z-index: 10;
+}
+.BackTop {
+    height: 40px;
+    width: 40px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+@media only screen and (max-width: 539px) {
+    /* PC Điện thoại nhỏ hơn 539px */
+    .SideBar {
+        height: 100vh;
+        width: 50%;
+        position: fixed;
+        top: 0;
+        z-index: 9;
+        background: #ffe0e0;
+        transition: all 300ms ease;
+        left: -60%;
+    }
+    .BtnMenumobile {
+        display: block;
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        z-index: 10;
+        background: #ffe0e0;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 300ms ease;
+    }
+    .open {
+        left: 0px;
+    }
+}
+@media only screen and (min-width: 540px) and (max-width: 719px) {
+    /* Điện thoại màn hình lớn thua IPAD */
+    .SideBar {
+        height: 100vh;
+        width: 50%;
+        position: fixed;
+        top: 0;
+        z-index: 9;
+        background: #ffe0e0;
+        transition: all 300ms ease;
+        left: -60%;
+    }
+    .BtnMenumobile {
+        display: block;
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        z-index: 10;
+        background: #ffe0e0;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 300ms ease;
+    }
+    .open {
+        left: 0px;
+    }
+}
+@media only screen and (min-width: 720px) and (max-width: 959px) {
+    /* IPAD  */
+    .SideBar {
+        height: 100vh;
+        width: 50%;
+        position: fixed;
+        top: 0;
+        z-index: 9;
+        background: #ffe0e0;
+        transition: all 300ms ease;
+        left: -60%;
+    }
+    .BtnMenumobile {
+        display: block;
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        z-index: 10;
+        background: #ffe0e0;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 300ms ease;
+    }
+    .open {
+        left: 0px;
+    }
+}

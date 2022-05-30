@@ -12,7 +12,6 @@
   --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
   --activeItem: #f799a354;
 }
-
 body {
   font-family: "Montserrat", sans-serif;
 }
@@ -36,5 +35,33 @@ body {
   background: var(--glass);
   border-radius: 2rem;
   gap: 16px;
-  overflow: hidden;
+  overflow: scroll;
+}
+.wrapperMaindash {
+  margin-top: 65px;
+  width: 98%;
+  margin-left: 1%;
+}
+.heading-text--large {
+  font-size: 30px;
+  line-height: 54px;
+  font-weight: bold;
+  margin-bottom: 21px;
+  height: 54px;
+}
+.heading-text {
+  font-weight: bold;
+  margin: 18px 0px;
+  font-size: 19px;
+}
+@media only screen and (min-width: 960px) and (max-width: 1139px) {
+  /* IPAD Pro */
+  .wrapperMaindash {
+    margin-top: 0px;
+  }
+}
+@media only screen and (min-width: 1140px) and (max-width: 1319px) {
+  .wrapperMaindash {
+    margin-top: 0px;
+  }
 }

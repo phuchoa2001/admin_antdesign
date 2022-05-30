@@ -1,3 +1,75 @@
-.menu {
+.MenuSideBar {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.MenuItem {
+    height: 40px;
+    font-size: 14px;
+    border-radius: 0.7rem;
+    align-items: center;
+    width: 100%;
     background: transparent;
+    border: none;
+}
+.MenuItem:hover {
+    cursor: pointer;
+    color: transparent;
+}
+.href {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    justify-content: flex-start;
+}
+.href:hover {
+    color: black;
+}
+.icon {
+    font-size: 24px;
+    margin: 0px 20px 0px 28px;
+}
+.ItemText {
+    font-size: 14px;
+    line-height: 14px;
+}
+.active {
+    background: var(--activeItem);
+    margin-left: 0;
+    position: relative;
+    animation-name: MarginLeft;
+    animation-duration: 300ms;
+    animation-timing-function: ease;
+}
+/* Animation */
+@keyframes MarginLeft {
+    from {
+        margin-left: 30px;
+    }
+    to {
+        margin-left: 0px;
+    }
+}
+.active::before {
+    content: "";
+    width: 8px;
+    height: 100%;
+    background: var(--pink);
+    margin-right: calc(1rem - 8px);
+    position: absolute;
+}
+@media only screen and (min-width: 960px) and (max-width: 1139px) {
+    /* IPAD Pro */
+    .ItemText {
+        display: none;
+    }
+}
+@media only screen and (min-width: 1140px) and (max-width: 1319px) {
+    .ItemText {
+        display: none;
+    }
 }
